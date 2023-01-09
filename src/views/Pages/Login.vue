@@ -85,6 +85,8 @@
   </div>
 </template>
 <script>
+  import { supabase } from '../../supabase'
+
   export default {
     data() {
       return {
@@ -97,8 +99,21 @@
     },
     methods: {
       onSubmit() {
-        // this will be called only after form is valid. You can do api call here to login
+
+      const { data, error } = supabase.auth.signInWithPassword({
+            email: this.model.email,
+            password: this.model.password,
+      }).then(response => { 
+            //session.value = response.data.session.access_token
+            console.log(`Response: ${JSON.stringify(response)}`)
+            this.$router.push({path: '/'})
+        })
+        .catch(function (error) {
+          console.error(JSON.stringify(error));
+        });
+ 
+  
       }
-    }
+    } 
   };
 </script>

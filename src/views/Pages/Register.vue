@@ -96,6 +96,7 @@
   </div>
 </template>
 <script>
+  import { supabase } from '../../supabase'
 
   export default {
     name: 'register',
@@ -111,8 +112,16 @@
     },
     methods: {
       onSubmit() {
-        // this will be called only after form is valid. You can do an api call here to register users
-      }
+        const { data, error } = supabase.auth.signUp({
+          email: this.model.email,
+          password: this.model.password,
+        }).then(response => {
+          console.log('Register OK: ' + JSON.stringify(response))
+        })
+        .catch(function (error) {
+          console.error('Register Error: ' + JSON.stringify(error.response));
+        });
+       }
     }
 
   };
