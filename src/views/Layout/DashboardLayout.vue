@@ -44,7 +44,20 @@
                   icon: 'ni ni-bullet-list-67 text-red'
                 }">
         </sidebar-item>
-
+        <sidebar-item
+                :link="{
+                  name: 'Items',
+                  path: '/tablaitems',
+                  icon: 'ni ni-single-02 text-yellow'
+                }">
+        </sidebar-item>
+        <sidebar-item
+                :link="{
+                  name: 'Administracion Usuarios',
+                  path: '/adminusuarios',
+                  icon: 'ni ni-single-02 text-yellow'
+                }">
+        </sidebar-item>
         <sidebar-item
                   :link="{
                     name: 'Login',

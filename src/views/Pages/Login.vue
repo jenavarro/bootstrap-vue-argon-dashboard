@@ -99,19 +99,18 @@
     },
     methods: {
       onSubmit() {
-
+        
       const { data, error } = supabase.auth.signInWithPassword({
             email: this.model.email,
             password: this.model.password,
       }).then(response => { 
-            //session.value = response.data.session.access_token
-            console.log(`Response: ${JSON.stringify(response)}`)
             this.$router.push({path: '/'})
         })
         .catch(function (error) {
-          console.error(JSON.stringify(error));
-        });
- 
+          console.log(`Error: ${JSON.stringify(error)}`)
+        })
+        .finally( function(){
+        })
   
       }
     } 

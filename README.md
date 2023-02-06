@@ -187,7 +187,6 @@ Within the download you'll find the following directories and files:
                 |-- SamplePage.vue
             |-- Tables
                 |-- RegularTables
-                |-- projects.js
                 |-- users.js
         |-- App.vue
         |-- main.js

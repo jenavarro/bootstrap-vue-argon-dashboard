@@ -1,21 +1,21 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import routes from './routes';
-import { onMounted, ref } from 'vue'
+//import { onMounted, ref } from 'vue'
 import { supabase } from '../supabase'
 
 Vue.use(VueRouter);
- 
-onMounted(() => {
-  supabase.auth.getSession().then(({ data }) => {
-    session.value = data.session
-  })
+var session={};
 
-  supabase.auth.onAuthStateChange((_, _session) => {
-    session.value = _session
-  })
-})
-const session = ref() 
+ if (supabase != undefined){
+    supabase.auth.getSession().then(({ data }) => {
+      session.value = data.session
+    })
+
+    supabase.auth.onAuthStateChange((_, _session) => {
+      session.value = _session
+    })
+}
  
  
 // configure router
@@ -43,7 +43,7 @@ router.beforeEach( (to, from, next) => {
         params: { nextUrl: to.fullPath }
       })
     } else {
-      let user = JSON.parse(session.value)
+      let user = session.value
       next() 
       if (to.matched.some(record => record.meta.is_admin)) {
          if (user.is_admin == 1) {

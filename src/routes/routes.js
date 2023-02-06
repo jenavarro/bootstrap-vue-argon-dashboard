@@ -47,6 +47,22 @@ const routes = [
         }
       },
       {
+        path: '/adminusuarios',
+        name: 'adminusuarios',
+        component: () => import(/* webpackChunkName: "demo" */ '../views/Tables/RegularTables/AdminUsuarios.vue'),
+        meta: {
+          requiresAuth: true
+        }
+      },
+      {
+        path: '/tablaitems',
+        name: 'tablaitems',
+        component: () => import(/* webpackChunkName: "demo" */ '../views/Tables/RegularTables/TablaItems.vue'),
+        meta: {
+          requiresAuth: true
+        }
+      },
+      {
         path: '/tables',
         name: 'tables',
         component: () => import(/* webpackChunkName: "demo" */ '../views/RegularTables.vue'),

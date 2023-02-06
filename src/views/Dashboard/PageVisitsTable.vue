@@ -15,25 +15,27 @@
     <el-table class="table-responsive table"
               :data="tableData"
               header-row-class-name="thead-light">
-      <el-table-column label="Page name"
-                       min-width="130px"
-                       prop="page">
-        <template v-slot="{row}">
-          <div class="font-weight-600">{{row.page}}</div>
-        </template>
+      <el-table-column label="Id"
+                       min-width="50px"
+                       prop="id">
+
       </el-table-column>
-      <el-table-column label="Visitors"
-                       min-width="70px"
-                       prop="visitors">
-      </el-table-column>
-      <el-table-column label="Unique users"
+      <el-table-column label="Nombre"
                        min-width="90px"
-                       prop="unique">
+                       prop="nombre">
+      </el-table-column>
+      <el-table-column label="Descripcion"
+                       min-width="90px"
+                       prop="descripcion">
       </el-table-column>
 
-      <el-table-column label="Bounce rate"
+      <el-table-column label="Fecha y Hora Creacion"
                        min-width="90px"
-                       prop="bounceRate">
+                       prop="created_at">
+      </el-table-column>
+      <el-table-column label="Habilitado"
+                       min-width="50px"
+                       prop="habilitado">                       
         <template v-slot="{row}">
           {{row.bounceRate}}
         </template>
@@ -43,6 +45,8 @@
 </template>
 <script>
   import { Table, TableColumn, DropdownMenu, DropdownItem, Dropdown} from 'element-ui'
+  import { supabase } from '../../supabase'
+
   export default {
     name: 'page-visits-table',
     components: {
@@ -52,42 +56,21 @@
       [DropdownItem.name]: DropdownItem,
       [DropdownMenu.name]: DropdownMenu,
     },
-    data() {
+     data() {
       return {
-        tableData: [
-          {
-            page: '/argon/',
-            visitors: '4,569',
-            unique: '340',
-            bounceRate: '46,53%'
-          },
-          {
-            page: '/argon/index.html',
-            visitors: '3,985',
-            unique: '319',
-            bounceRate: '46,53%'
-          },
-          {
-            page: '/argon/charts.html',
-            visitors: '3,513',
-            unique: '294',
-            bounceRate: '36,49%'
-          },
-          {
-            page: '/argon/tables.html',
-            visitors: '2,050',
-            unique: '147',
-            bounceRate: '50,87%'
-          },
-          {
-            page: '/argon/profile.html',
-            visitors: '1,795',
-            unique: '190',
-            bounceRate: '46,53%'
-          }
-        ]
+        tableData: []
       }
     }
+    , created() {
+      this.getDataFromApi()
+    },
+    methods: {
+      async getDataFromApi() {
+        const { data, error } = await supabase
+          .from('items')
+          .select()
+      this.tableData=data;
+      }}
   }
 </script>
 <style>
