@@ -53,6 +53,13 @@
         </sidebar-item>
         <sidebar-item
                 :link="{
+                  name: 'Personas',
+                  path: '/personas',
+                  icon: 'ni ni-single-02 text-yellow'
+                }">
+        </sidebar-item>
+        <sidebar-item
+                :link="{
                   name: 'Administracion Usuarios',
                   path: '/adminusuarios',
                   icon: 'ni ni-single-02 text-yellow'

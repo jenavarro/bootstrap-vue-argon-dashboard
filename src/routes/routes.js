@@ -47,6 +47,14 @@ const routes = [
         }
       },
       {
+        path: '/personas',
+        name: 'personas',
+        component: () => import(/* webpackChunkName: "demo" */ '../views/Tables/RegularTables/Personas.vue'),
+        meta: {
+          requiresAuth: true
+        }
+      },
+      {
         path: '/adminusuarios',
         name: 'adminusuarios',
         component: () => import(/* webpackChunkName: "demo" */ '../views/Tables/RegularTables/AdminUsuarios.vue'),
